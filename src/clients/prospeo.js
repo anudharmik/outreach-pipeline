@@ -1,33 +1,37 @@
-const axios = require('axios');
-const config = require('../config/env');
-const logger = require('../utils/logger');
+import axios from "axios";
+import { env } from "../config/env.js";
 
-class ProspeoClient {
-  constructor() {
-    this.apiKey = config.prospeo.apiKey;
-    this.baseUrl = 'https://api.prospeo.io/v1'; // Example base URL
-  }
+const prospeoClient = axios.create({
+  baseURL: "https://api.prospeo.io",
+  headers: {
+    "X-KEY": env.prospeoApiKey,
+    "Content-Type": "application/json",
+  },
+});
 
-  // Example API call to find emails
-  async findEmail(domain) {
-    if (!this.apiKey) {
-      logger.warn('Prospeo API Key is missing. Skipping email search.');
-      return null;
+export async function searchPeopleByCompany(domain) {
+  const response = await prospeoClient.post(
+    "/search-person",
+    {
+      page: 1,
+      filters: {
+        company: {
+          websites: {
+            include: [domain],
+          },
+        },
+        person_seniority: {
+          include: ["C-Suite"],
+        },
+      },
     }
+  );
 
-    logger.info(`Finding emails via Prospeo for domain: ${domain}`);
-    try {
-      const response = await axios.post(`${this.baseUrl}/email-finder`, {
-        domain
-      }, {
-        headers: { 'Content-Type': 'application/json', 'X-KEY': this.apiKey }
-      });
-      return response.data;
-    } catch (error) {
-      logger.error(`Prospeo API error: ${error.message}`);
-      throw error;
-    }
-  }
+  return response.data.results.map(item => ({
+  fullName: item.person.full_name,
+  title: item.person.current_job_title,
+  linkedinUrl: item.person.linkedin_url,
+  companyName: item.company.name,
+  }));
+
 }
-
-module.exports = new ProspeoClient();
