@@ -3,13 +3,16 @@ import { env } from "../config/env.js";
 
 const prospeoClient = axios.create({
   baseURL: "https://api.prospeo.io",
+  timeout:30000,
   headers: {
     "X-KEY": env.prospeoApiKey,
     "Content-Type": "application/json",
   },
 });
 
-export async function searchPeopleByCompany(domain) {
+export async function searchPeopleByCompany(domain,retries=2) {
+  try{
+    console.log(`Searching prospects for ${domain}`);
   const response = await prospeoClient.post(
     "/search-person",
     {
@@ -34,6 +37,22 @@ export async function searchPeopleByCompany(domain) {
   linkedinUrl: item.person.linkedin_url,
   companyName: item.company.name,
   }));
+
+  }catch(error){
+    if (error.response?.status === 429 && retries>0 ){
+    console.log(
+      "Prospeo rate limit reached. Waiting 10 seconds..."
+    );
+
+    await new Promise(resolve =>
+      setTimeout(resolve, 10000)
+    );
+
+    return searchPeopleByCompany(domain,retries-1);
+  }
+
+  throw error;
+  }
 }
 
 

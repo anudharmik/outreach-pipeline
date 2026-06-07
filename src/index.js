@@ -16,5 +16,7 @@ await runPipeline(domain);
 } catch (error){
 
   console.error("\nPipeline failed:");
+  console.error(error.response?.status);
+  console.error(error.response?.data);
   console.error(error.message);
 }

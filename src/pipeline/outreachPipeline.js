@@ -1,7 +1,7 @@
 import fs from "fs";
 import { findLookalikeCompanies } from "../clients/ocean.js";
 import {searchPeopleByCompany } from "../clients/prospeo.js"; 
-import { dedupeProspects } from "../utils/dedupe.js";
+import { dedupeProspects,dedupeEmails } from "../utils/dedupe.js";
 import { generateEmail } from "../utils/emailTemplate.js";
 import { enrichPerson } from "../clients/prospeo.js"; 
 import readlineSync from "readline-sync";
@@ -46,6 +46,9 @@ export async function runPipeline(domain) {
     const companyProspects =
     await searchPeopleByCompany(company.company.domain);
     prospects.push(...companyProspects);
+    await new Promise(resolve =>
+     setTimeout(resolve, 2000)
+     );
   }    
 
   fs.writeFileSync(
@@ -76,10 +79,24 @@ for (const prospect of uniqueProspects) {
     if (result.email) {
       enriched.push(result);
     }
-  } catch (error) {
-    console.log(
-      `Skipping ${prospect.fullName}`
+
+    await new Promise(resolve =>
+      setTimeout(resolve,1500)
     );
+  } catch (error) {
+    console.log(`Skipping ${prospect.fullName}`);
+    console.log(
+    "Status:",
+    error.response?.status);
+
+    console.log(
+    "Data:",
+    error.response?.data);
+
+    console.log(
+    "Message:",
+    error.message);
+
   }
 }
 
@@ -105,19 +122,17 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
     return;
   }
 
-  console.log(outreachQueue);
+  const dedupedOutreachQueue = dedupeEmails(outreachQueue);
 
-  console.log(`\nReady to send ${outreachQueue.length} personalized emails\n`);
+  console.log(`\nReady to send ${dedupedOutreachQueue.length} personalized emails\n`);
 
-  outreachQueue.forEach((prospect, index) => {
+  dedupedOutreachQueue.forEach((prospect, index) => {
   console.log(
-    `${index + 1}. ${prospect.fullname} - ${prospect.email}`
+    `${index + 1}. ${prospect.fullName} - ${prospect.email}`
   );
   });
 
-
-
-  const preview = outreachQueue[0];
+  const preview = dedupedOutreachQueue[0];
 
   console.log("\nEmail Preview\n");
   console.log(`To: ${preview.email}`);
@@ -125,7 +140,7 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
   console.log(preview.body);
 
   const answer = readlineSync.question(
-    `\nProceed with sending ${outreachQueue.length} emails? (y/n): `
+    `\nProceed with sending ${dedupedOutreachQueue.length} emails? (y/n): `
   ).toLowerCase();
   
     if (answer !== "y") {
@@ -138,7 +153,8 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
   let failureCount = 0;
 
   const companyStats = {};
-  for (const prospect of outreachQueue) {
+
+  for (const prospect of dedupedOutreachQueue) {
     try {
 
       const result= await sendEmail({
@@ -170,7 +186,7 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
 
   console.log(`Companies Processed: ${companies.length}`);
   console.log(`Decision Makers Found: ${uniqueProspects.length}`);
-  console.log(`Verified Emails: ${outreachQueue.length}`);
+  console.log(`Verified Emails: ${dedupedOutreachQueue.length}`);
   console.log(`Successfully Sent: ${successCount}`);
   console.log(`Failed: ${failureCount}`);
 

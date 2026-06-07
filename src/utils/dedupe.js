@@ -12,3 +12,20 @@ export function dedupeProspects(prospects) {
     return true;
   });
 }
+
+export function dedupeEmails(prospects) {
+  const seen = new Set();
+
+  return prospects.filter((prospect) => {
+    const email = prospect.email?.toLowerCase();
+
+    if (!email) return false;
+
+    if (seen.has(email)) {
+      return false;
+    }
+
+    seen.add(email);
+    return true;
+  });
+}

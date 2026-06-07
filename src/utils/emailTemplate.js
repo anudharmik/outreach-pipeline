@@ -1,9 +1,10 @@
 export function generateEmail(prospect) {
+  const firstName =  prospect.fullName?.split(" ")[0] || "there";
   return {
     subject: `Idea for ${prospect.companyName}'s tech stack`,
 
     body: `
-Hi ${prospect.firstName},
+Hi ${firstName},
 
 I have been following ${prospect.companyName}'s recent trajectory. Given your role as ${prospect.title}, I imagine optimizing your team's output is always top of mind.
 

@@ -1,10 +1,44 @@
 [
-    {
-  "fullName": "Anirudh Shenoy",
-  "title": "Program Manager - Chief of Staff",
-  "linkedinUrl": "https://www.linkedin.com/in/anirudh-shenoy-993933106",
-  "companyName": "Razorpay",
-  "email":"anuragdharmik07@gmail.com"
-  
-}
+  {
+    "fullName": "Anirudh Shenoy",
+    "title": "Program Manager - Chief of Staff",
+    "linkedinUrl": "https://www.linkedin.com/in/anirudh-shenoy-993933106",
+    "companyName": "Razorpay",
+    "email": "anirudh.shenoy@razorpay.com"
+  },
+  {
+    "fullName": "Arpit Chug",
+    "title": "Chief Financial Officer",
+    "linkedinUrl": "https://www.linkedin.com/in/arpit-chug-5928354",
+    "companyName": "Razorpay",
+    "email": "arpit.chug@razorpay.com"
+  },
+  {
+    "fullName": "Harshil Mathur",
+    "title": "CEO & Co-Founder",
+    "linkedinUrl": "https://www.linkedin.com/in/harshilmathur",
+    "companyName": "Razorpay",
+    "email": "harshil.mathur@razorpay.com"
+  },
+  {
+    "fullName": "Vikas Guru",
+    "title": "Chief Financial Officer",
+    "linkedinUrl": "https://www.linkedin.com/in/vikas-guru-42745b13",
+    "companyName": "Cashfree Payments",
+    "email": "vikas.guru@cashfree.com"
+  },
+  {
+    "fullName": "Akash S.",
+    "title": "Co-founder and CEO",
+    "linkedinUrl": "https://www.linkedin.com/in/sinhaakash",
+    "companyName": "Cashfree Payments",
+    "email": "akash@cashfree.com"
+  },
+  {
+    "fullName": "Harsh Gupta",
+    "title": "Chief Revenue Officer (CRO)",
+    "linkedinUrl": "https://www.linkedin.com/in/harsh-gupta-47985327",
+    "companyName": "Cashfree Payments",
+    "email": "harsh.gupta@cashfree.com"
+  }
 ]
