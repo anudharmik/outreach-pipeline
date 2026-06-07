@@ -1,35 +1,18 @@
-/**
- * Generates an email body using custom templates.
- * @param {string} templateName - Name of the template.
- * @param {Object} variables - Key-value pairs to replace in the template.
- * @returns {string} - Compiled template string.
- */
-function compileTemplate(templateName, variables = {}) {
-  // Simple replacement templating
-  let template = '';
-  
-  if (templateName === 'outreach') {
-    template = `
-      Hi {{name}},
-      
-      I noticed you are working at {{company}}. I would love to connect and discuss how we can help you optimize your outreach pipeline.
-      
-      Best regards,
-      The Team
-    `;
-  } else {
-    template = `Hello {{name}}, welcome!`;
-  }
+export function generateEmail(prospect) {
+  return {
+    subject: `Idea for ${prospect.companyName}'s tech stack`,
 
-  let compiled = template;
-  for (const [key, value] of Object.entries(variables)) {
-    const placeholder = new RegExp(`{{${key}}}`, 'g');
-    compiled = compiled.replace(placeholder, value || '');
-  }
+    body: `
+Hi ${prospect.firstName},
 
-  return compiled.trim();
+I have been following ${prospect.companyName}'s recent trajectory. Given your role as ${prospect.title}, I imagine optimizing your team's output is always top of mind.
+
+We build zero-touch automation pipelines for fast-growing teams. Our platform completely eliminates manual data entry so your engineers can focus on building core product instead of repetitive workflows.
+
+Are you opposed to me sending over a short, 2-minute breakdown of how this works?
+
+Best regards,
+Anurag
+`,
+  };
 }
-
-module.exports = {
-  compileTemplate
-};
