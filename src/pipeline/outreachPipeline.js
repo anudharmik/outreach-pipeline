@@ -26,6 +26,7 @@ export async function runPipeline(domain) {
   "./data/companies.json",
   JSON.stringify(companies, null, 2)
   );  
+  // save API response snapshot for easy debugging
 
   // const companies = JSON.parse(
   // fs.readFileSync("./data/companies.json")
@@ -55,6 +56,7 @@ export async function runPipeline(domain) {
   "./data/prospects.json",
   JSON.stringify(prospects, null, 2)
   );
+  // save API response snapshot for easy debugging
 
 // const prospects = JSON.parse(
 //   fs.readFileSync("./data/prospects.json")
