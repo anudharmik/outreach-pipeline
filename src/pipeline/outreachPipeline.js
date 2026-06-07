@@ -1,9 +1,9 @@
 import fs from "fs";
 import { findLookalikeCompanies } from "../clients/ocean.js";
-// import {searchPeopleByCompany } from "../clients/prospeo.js"; // until the final
+import {searchPeopleByCompany } from "../clients/prospeo.js"; 
 import { dedupeProspects } from "../utils/dedupe.js";
 import { generateEmail } from "../utils/emailTemplate.js";
-// import { enrichPerson } from "../clients/prospeo.js"; //until final
+import { enrichPerson } from "../clients/prospeo.js"; 
 import readlineSync from "readline-sync";
 import { sendEmail } from "../clients/brevo.js";
 
