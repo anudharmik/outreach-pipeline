@@ -9,6 +9,12 @@ export const env = {
   senderEmail: process.env.SENDER_EMAIL
 };
 
+if (!process.env.OCEAN_API_KEY) {
+  throw new Error(
+    "Missing OCEAN_API_KEY"
+  );
+}
+
 if (!process.env.PROSPEO_API_KEY) {
   throw new Error(
     "Missing PROSPEO_API_KEY"

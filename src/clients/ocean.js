@@ -17,7 +17,7 @@ export async function findLookalikeCompanies(domain) {
   const response = await oceanClient.post(
     "/v3/search/companies",
     {
-      size: 2,
+      size: 3,
       companiesFilters: {
         lookalikeDomains: [domain],
         excludeDomains: [domain],

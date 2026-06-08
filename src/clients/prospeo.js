@@ -68,6 +68,10 @@ export async function enrichPerson(personId) {
   );
 
   const data = response.data;
+  if (!data.person?.email?.email) {
+  return null;
+  }
+
   return{
     fullName:data.person.full_name,
     title:data.person.current_job_title,

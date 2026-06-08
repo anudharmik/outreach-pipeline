@@ -28,9 +28,6 @@ export async function runPipeline(domain) {
   );  
   // save API response snapshot for easy debugging
 
-  // const companies = JSON.parse(
-  // fs.readFileSync("./data/companies.json")
-  // );
 
   console.log(`Found ${companies.length} similar companies`);
 
@@ -58,18 +55,12 @@ export async function runPipeline(domain) {
   );
   // save API response snapshot for easy debugging
 
-// const prospects = JSON.parse(
-//   fs.readFileSync("./data/prospects.json")
-// );
 
 const uniqueProspects = dedupeProspects(prospects);
 
 displayProspects(uniqueProspects);
 
 
-// const enriched=JSON.parse(
-//   fs.readFileSync("./data/enrichedProspects.json")
-// );
 
 const enriched = [];
 for (const prospect of uniqueProspects) {
@@ -206,16 +197,7 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
   }
   );
 
-  // fs.writeFileSync(
-  // "./data/enrichedProspects.json",
-  // JSON.stringify(enriched, null, 2)
-  // );
+
 
   return;
-
-
-  // return {
-  //   companies,
-  //   prospects: uniqueProspects,
-  // };
 }
