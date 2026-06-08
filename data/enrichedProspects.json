@@ -40,5 +40,19 @@
     "linkedinUrl": "https://www.linkedin.com/in/harsh-gupta-47985327",
     "companyName": "Cashfree Payments",
     "email": "harsh.gupta@cashfree.com"
+  },
+  {
+    "fullName": "Nicole Olbe",
+    "title": "Managing Director UK",
+    "linkedinUrl": "https://www.linkedin.com/in/nicoleolbe",
+    "companyName": "Adyen",
+    "email": "nicole.olbe@adyen.com"
+  },
+  {
+    "fullName": "Tom Adams",
+    "title": "Chief Technology Officer",
+    "linkedinUrl": "https://www.linkedin.com/in/tomjadams",
+    "companyName": "Adyen",
+    "email": "tom.adams@adyen.com"
   }
 ]

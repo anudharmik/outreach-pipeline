@@ -40,5 +40,26 @@
     "title": "Chief Revenue Officer (CRO)",
     "linkedinUrl": "https://www.linkedin.com/in/harsh-gupta-47985327",
     "companyName": "Cashfree Payments"
+  },
+  {
+    "personId": "aaaa42d7d831577fcd0ef1f4",
+    "fullName": "Nicole Olbe",
+    "title": "Managing Director UK",
+    "linkedinUrl": "https://www.linkedin.com/in/nicoleolbe",
+    "companyName": "Adyen"
+  },
+  {
+    "personId": "aaaa81c249ac53bf0ede3c7a",
+    "fullName": "Tom Adams",
+    "title": "Chief Technology Officer",
+    "linkedinUrl": "https://www.linkedin.com/in/tomjadams",
+    "companyName": "Adyen"
+  },
+  {
+    "personId": "aaaab6154a7342fbc35f6368",
+    "fullName": "Mahmoud Ismail-Adyen",
+    "title": "Chief of Staff & Head of Acquiring and Payments MEA",
+    "linkedinUrl": "https://www.linkedin.com/in/mahmoudismailo",
+    "companyName": "Adyen"
   }
 ]

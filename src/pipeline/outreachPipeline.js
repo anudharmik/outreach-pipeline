@@ -156,7 +156,7 @@ const outreachQueue = enriched.filter((prospect) => prospect.email).map((prospec
     try {
 
       const result= await sendEmail({
-        to: "anuragdharmik07@gmail.com",
+        to: prospect.email,
         subject: prospect.subject,
         htmlContent: prospect.body.replace(/\n/g, "<br>"),
       });
