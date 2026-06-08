@@ -20,6 +20,11 @@ function displayProspects(prospects) {
 
 
 export async function runPipeline(domain) {
+
+  if (!domain) {
+    throw new Error("Domain is required");
+  }
+
   const companies = await findLookalikeCompanies(domain);   
 
   fs.writeFileSync(
