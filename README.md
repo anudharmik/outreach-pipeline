@@ -30,11 +30,15 @@ Prospeo Search Person
 ↓
 Decision Makers
 ↓
+Prospect Deduplication
+(LinkedIn URL Based)
+↓
 Prospeo Enrich Person
 ↓
 Verified Emails
 ↓
-Deduplication
+Email Deduplication
+(Email Address Based)
 ↓
 Personalized Email Generation
 ↓
@@ -43,7 +47,6 @@ Safety Confirmation
 Brevo Email Delivery
 ↓
 Summary Report
-
 ---
 
 ## Features
